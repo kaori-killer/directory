@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 
 import FilterableDirectoryTable from './components/FilterableDirectoryTable';
 
@@ -12,6 +12,10 @@ const dummuy = [
 
 export default function App() {
 	const [directorys, setDirectorys] = useState(dummuy);
+
+	useEffect(() => {
+		setLocal;
+	}, [directorys]);
 
 	return (
 		<div>

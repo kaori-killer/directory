@@ -1,9 +1,11 @@
-import {useEffect, useState} from 'react';
+import {useState, useRef} from 'react';
+import {useLocalStorage} from 'usehooks-ts';
 
 import SearchBar from './SearchBar';
 import DirectoryTable from './DirectroyTable';
 
 import type Directory from '../types/Directory';
+import TextField from './TextField';
 
 type FilterableDirectoryTableProps = {
 	directorys: Directory[];
@@ -15,6 +17,7 @@ export default function FilterableDirectoryTable({
 	setDirectorys,
 }: FilterableDirectoryTableProps) {
 	const [filterText, setFilterText] = useState('');
+	const id = useRef(5);
 
 	const filteredDirectorys = directorys.filter(directory =>
 		directory.name.includes(filterText.trim()));
@@ -34,8 +37,25 @@ export default function FilterableDirectoryTable({
 		setDirectorys(newDirectorys);
 	};
 
+	const handleClickAdd = (name: string, number: string) => {
+		console.log(...directorys);
+		id.current += 1;
+
+		setDirectorys([
+			...directorys,
+			{
+				id: String(id.current + 1),
+				name,
+				number,
+			},
+		]);
+	};
+
 	return (
 		<div>
+			<TextField
+				handleClickAdd={handleClickAdd}
+			/>
 			<SearchBar
 				filterText={filterText}
 				setFilterText={setFilterText}
