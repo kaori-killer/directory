@@ -1,6 +1,8 @@
-import {useEffect, useState} from 'react';
+import {useLocalStorage} from 'usehooks-ts';
 
 import FilterableDirectoryTable from './components/FilterableDirectoryTable';
+import type Directory from './types/Directory';
+import {useEffect} from 'react';
 
 const dummuy = [
 	{id: '1', name: '신짱구', number: '01012345678'},
@@ -11,11 +13,7 @@ const dummuy = [
 ];
 
 export default function App() {
-	const [directorys, setDirectorys] = useState(dummuy);
-
-	useEffect(() => {
-		setLocal;
-	}, [directorys]);
+	const [directorys, setDirectorys] = useLocalStorage<Directory[]>('directorys', dummuy);
 
 	return (
 		<div>

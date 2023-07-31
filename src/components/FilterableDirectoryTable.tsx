@@ -1,5 +1,4 @@
 import {useState, useRef} from 'react';
-import {useLocalStorage} from 'usehooks-ts';
 
 import SearchBar from './SearchBar';
 import DirectoryTable from './DirectroyTable';
@@ -44,7 +43,7 @@ export default function FilterableDirectoryTable({
 		setDirectorys([
 			...directorys,
 			{
-				id: String(id.current + 1),
+				id: String(id.current),
 				name,
 				number,
 			},
